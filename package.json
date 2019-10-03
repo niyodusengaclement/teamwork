@@ -1,0 +1,33 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel index.js  --out-dir build/ --ignore ./node_modules",
+    "dev-start": "babel-watch build/index.js",
+    "start": "npm run build && node build/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/node": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "babel-watch": "^7.0.0",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  },
+  "dependencies": {
+    "babel-loader": "^8.0.0-beta.6",
+    "core-util-is": "^1.0.2",
+    "dotenv": "^8.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "uuid": "^3.3.3"
+  }
+}
