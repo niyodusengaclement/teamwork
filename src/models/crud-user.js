@@ -7,14 +7,14 @@ import jwt from "jsonwebtoken";
 class CrudUser{
     constructor(){
         this.user=[];
+        this.Article=[];
     }
 
     findOne(inputEmail){
         return this.user=users.find(data => data.email===inputEmail);
-
     }
     findAllArticles(){
-        return article;
+        return this.Article=article.find(data => data.id !== null );
     }
     logUser(inputEmail,inputPassword){
         return this.user=users.find(data => data.email===inputEmail && data.password===inputPassword);
@@ -24,6 +24,9 @@ class CrudUser{
     }
     addArticle(newArticle){
         return article.push(newArticle);
+    }
+    findOneArticle(id){
+        return this.Article=article.find(data => data.id === id);
     }
     validateToken(inputData,options){
         return jwt.verify(inputData,process.env.TOKEN,options);

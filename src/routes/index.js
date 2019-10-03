@@ -11,6 +11,8 @@ router.post('/auth/signup', userActivityUp.signup);
 router.post('/auth/signin', userActivityIn.signin);
 router.post('/articles', articleActions.create);
 router.get('/articles', articleActions.getAll);
+router.get('/articles/:articleId',articleActions.getOne);
+router.post('/articles/comments/:articleId',articleActions.addComment);
 
 //useless
 router.post('/reflections', Reflection.create);
