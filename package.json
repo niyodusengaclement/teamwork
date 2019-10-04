@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel index.js  --out-dir build/ --ignore ./node_modules",
-    "dev-start": "babel-watch build/index.js",
-    "start": "npm run build && node build/index.js"
+    "start": "babel-watch build/index.js"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +23,7 @@
   },
   "dependencies": {
     "babel-loader": "^8.0.0-beta.6",
+    "bcrypt": "^3.0.6",
     "core-util-is": "^1.0.2",
     "dotenv": "^8.1.0",
     "jsonwebtoken": "^8.5.1",

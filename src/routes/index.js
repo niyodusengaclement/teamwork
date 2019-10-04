@@ -9,9 +9,12 @@ const router = express.Router();
 
 router.post('/auth/signup', userActivityUp.signup);
 router.post('/auth/signin', userActivityIn.signin);
+router.get('/auth/users',userActivityUp.getAll);
 router.post('/articles', articleActions.create);
 router.get('/articles', articleActions.getAll);
 router.get('/articles/:articleId',articleActions.getOne);
+router.patch('/articles/:articleId',articleActions.editOne);
+router.delete('/articles/:articleId',articleActions.deleteOne);
 router.post('/articles/comments/:articleId',articleActions.addComment);
 
 //useless

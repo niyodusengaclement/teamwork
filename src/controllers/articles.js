@@ -48,13 +48,29 @@ const articleActions = {
     },
 
     getAll(req,res){
-    //     const check= crudUser.findAllArticles();
-    //     if(!check) return res.send('No Article found');
-    //    res.status(200).send(crudUser.Article);   
+        const token=req.headers.auth;
+        const options={expiresIn: '1d', issuer:'www.jwt.io'};
+        try{
+            crudUser.validateToken(token,options);
+            }
+        catch(err){
+            return res.send("Invalid or malformatted token provided");
+            }
 
-       res.status(200).send(article);        
+            const output=article.sort().reverse();
+            
+       res.status(200).send(output);        
     },
     getOne(req,res){
+        const token=req.headers.auth;
+        const options={expiresIn: '1d', issuer:'www.jwt.io'};
+        try{
+            crudUser.validateToken(token,options);
+            }
+        catch(err){
+            return res.send("Invalid or malformatted token provided");
+            }
+
         const id=parseInt(req.params.articleId);
         const data= crudUser.findOneArticle(id);
         if(!data) return res.status(400).send("No Article match that ID");
@@ -71,7 +87,7 @@ const articleActions = {
             crudUser.validateToken(token,options);
             }
         catch(err){
-            return res.send("Invalid or malformatted token provided").false
+            return res.send("Invalid or malformatted token provided");
             }
 
         const comment=req.body.comment;
@@ -95,6 +111,55 @@ const articleActions = {
 
 
 
+    },
+    editOne(req,res){
+        const token=req.headers.auth;
+        const options={expiresIn: '1d', issuer:'www.jwt.io'};
+        try{
+            crudUser.validateToken(token,options);
+            }
+        catch(err){
+            return res.send("Invalid or malformatted token provided");
+            }
+
+        const title=req.body.title;
+        const article=req.body.article;
+        const id=parseInt(req.params.articleId);
+        const data= crudUser.findOneArticle(id);
+        if(!data) return res.status(400).send("No Article match that ID");
+        const articleOne=crudUser.Article;
+        articleOne.article=article;
+        articleOne.title=title;
+        res.status(200).json({
+            status:200,
+            msg:"article edited successfull",
+            title:articleOne.title,
+            article:articleOne.article
+        })
+
+        
+    },
+    deleteOne(req,res){
+        const token=req.headers.auth;
+        const options={expiresIn: '1d', issuer:'www.jwt.io'};
+        try{
+            crudUser.validateToken(token,options);
+            }
+        catch(err){
+            return res.send("Invalid or malformatted token provided");
+            }
+
+        const id=parseInt(req.params.articleId);
+        const data= crudUser.findOneArticle(id);
+        if(!data) return res.status(400).send("No Article match that ID");
+        const articleOne=article.indexOf(crudUser.Article);
+        if(!article.splice(articleOne)) return res.send("Something went wrong");
+        res.status(200).json({
+            status:204,
+            msg:"article deleted successfull"
+        })
+
+        
     }
 
 }

@@ -3,7 +3,6 @@ import article from "../assets/article"
 import jwt from "jsonwebtoken";
 
 
-
 class CrudUser{
     constructor(){
         this.user=[];
@@ -32,8 +31,7 @@ class CrudUser{
         return jwt.verify(inputData,process.env.TOKEN,options);
     }
 
-
-
+    
 }
 
 export default new CrudUser();
