@@ -27,8 +27,9 @@ class CrudUser{
     findOneArticle(id){
         return this.Article=article.find(data => data.id === id);
     }
-    validateToken(inputData,options){
-        return jwt.verify(inputData,process.env.TOKEN,options);
+    logUser(inputEmail,inputPassword){
+        const hash= bcrypt.compareSync(inPassword,inputPassword);
+        return this.user=users.find(data => data.email===inputEmail && data.password===inputPassword);
     }
 
     

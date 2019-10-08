@@ -1,10 +1,30 @@
-import bcrypt from 'bcrypt';
+import jwt from "jsonwebtoken";
 
 
+function validateToken(req,res,next){
+const authentication=req.headers.auth;
+let result;
+if (authentication){
+    const token=req.headers.auth;
+    const options={expiresIn: '1d', issuer:'www.jwt.io'};
+    try{
+        result=jwt.verify(token,process.env.TOKEN,options);
+        req.decoded=result;
+        next();
 
-export async function logUser(inputEmail,inputPassword){
-    const salt = bcrypt.genSaltSync(10);
-    const inPassword= bcrypt.hashSync(inputPassword, salt);
-    const hash= bcrypt.compareSync(inPassword,inputPassword);
-    return this.user=users.find(data => data.email===inputEmail && data.password===inputPassword);
+    }
+    catch(err){
+
+        throw new Error(err);
+    }
 }
+else{
+    result={
+        Error:'No token provided, Token required plz',
+        Status:401
+    };
+    res.status(401).send(result);
+    }
+}
+
+export default validateToken

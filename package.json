@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Teamwork built by using ES6 # Requirements to run * Node.js # Steps to perform in terminal : 1. cd in the project dir and run npm install 2. npm run build 3. npm start 4. open the browser and type localhost:5000 and type endpoint as configured",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
     "start": "babel-watch build/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mistico Clement",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.6.2",
@@ -26,8 +26,18 @@
     "bcrypt": "^3.0.6",
     "core-util-is": "^1.0.2",
     "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "uuid": "^3.3.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niyodusengaclement/teamwork.git"
+  },
+  "bugs": {
+    "url": "https://github.com/niyodusengaclement/teamwork/issues"
+  },
+  "homepage": "https://github.com/niyodusengaclement/teamwork#readme"
 }

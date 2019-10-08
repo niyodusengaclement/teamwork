@@ -9,7 +9,7 @@ const userActivityUp={
     getAll(req,res){
         res.send({users});
     },
-signup(req, res){
+    signup(req, res){
     
     const salt = bcrypt.genSaltSync(10);
     const inPassword= bcrypt.hashSync(req.body.password, salt);
