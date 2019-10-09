@@ -35,10 +35,10 @@ router.route('/articles/comments/:articleId')
 
 
 //useless
-router.post('/reflections', Reflection.create);
-router.get('/reflections', Reflection.getAll);
-router.get('/reflections/:id', Reflection.getOne);
-router.put('/reflections/:id', Reflection.update);
-router.delete('/reflections/:id', Reflection.delete);
+// router.post('/reflections', Reflection.create);
+// router.get('/reflections', Reflection.getAll);
+// router.get('/reflections/:id', Reflection.getOne);
+// router.put('/reflections/:id', Reflection.update);
+// router.delete('/reflections/:id', Reflection.delete);
 
 export default router;
