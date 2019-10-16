@@ -5,7 +5,7 @@ function validateToken(req,res,next){
 const authentication=req.headers.auth;
 let result;
 if (authentication){
-    const token=req.headers.auth;
+    const token=req.header("auth");
     const options={expiresIn: '1d', issuer:'www.jwt.io'};
     try{
         result=jwt.verify(token,process.env.TOKEN,options);

@@ -24,7 +24,8 @@ const userActivityIn = {
         const secret=process.env.TOKEN;
         const options={expiresIn: '1d', issuer:'www.jwt.io'};
         const token=jwt.sign(payload,secret,options);
-        return res.status(200).send({
+        
+        return res.header("x-auth",token).status(200).send({
             status:200,
             message:"You are successfull logged in Buddy",
             data:token
