@@ -1,6 +1,6 @@
 import express from 'express';
 import body from 'body-parser';
-import router from '../src/routes';
+import router from './src/routes';
 import env from 'dotenv';
 env.config();
 
@@ -19,5 +19,8 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port} ...........`);
+    
+    console.log(`Server is running on port ${port} ...........`);//babel-watch build/index.js
 })
+
+export default app;

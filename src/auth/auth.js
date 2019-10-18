@@ -23,7 +23,7 @@ else{
         Error:'No token provided, Token required plz',
         Status:401
     };
-    res.status(401).send(result);
+    return res.status(401).send(result);
     }
 }
 

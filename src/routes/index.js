@@ -1,7 +1,6 @@
 import express from 'express';
 import userActivityUp from '../controllers/signup';
 import userActivityIn from '../controllers/signin';
-import Reflection from '../controllers/Reflection';//useless
 import articleActions from "../controllers/articles";
 import validateToken from '../auth/auth';
 
@@ -33,12 +32,5 @@ router.route('/articles/:articleId')
 router.route('/articles/comments/:articleId')
         .post(validateToken,articleActions.addComment);
 
-
-//useless
-// router.post('/reflections', Reflection.create);
-// router.get('/reflections', Reflection.getAll);
-// router.get('/reflections/:id', Reflection.getOne);
-// router.put('/reflections/:id', Reflection.update);
-// router.delete('/reflections/:id', Reflection.delete);
 
 export default router;

@@ -1,6 +1,5 @@
 import users from "../assets/users";
-import article from "../assets/article"
-import jwt from "jsonwebtoken";
+import article from "../assets/article";
 
 
 class CrudUser{

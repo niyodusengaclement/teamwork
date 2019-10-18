@@ -20,12 +20,12 @@ const articleActions = {
 
         const { error } = addArticleValidation(req.body);
         if(error){
-            return res.send(error.details[0].message);
+            return res.status(400).send(error.details[0].message);
         }
         if(!crudUser.addArticle(newArticle)){
-            return res.send("something went wrong");
+            return res.status(400).send("something went wrong");
         }
-        res.status(200).json({
+        return res.status(200).json({
             status:200,
             message:"Article added successfull",
             data:{
@@ -45,9 +45,11 @@ const articleActions = {
     getOne(req,res){
         const id=parseInt(req.params.articleId);
         const data= crudUser.findOneArticle(id);
-        if(!data) return res.status(400).send("No Article match that ID");
+        if(!data) return res.status(400).send({
+            status:400,
+            message:"No Article match that ID"});
         const articleOne=crudUser.Article;
-        res.status(200).json({
+        return res.status(200).json({
             status:200,
             data:articleOne
         });
@@ -80,11 +82,13 @@ const articleActions = {
         const article=req.body.article;
         const id=parseInt(req.params.articleId);
         const data= crudUser.findOneArticle(id);
-        if(!data) return res.status(400).send("No Article match that ID");
+        if(!data) return res.status(400).send({
+            status:400,
+            message:"No Article match that ID"});
         const articleOne=crudUser.Article;
         articleOne.article=article;
         articleOne.title=title;
-        res.status(200).json({
+        return res.status(200).json({
             status:200,
             msg:"article edited successfull",
             title:articleOne.title,
@@ -96,10 +100,12 @@ const articleActions = {
     deleteOne(req,res){
         const id=parseInt(req.params.articleId);
         const data= crudUser.findOneArticle(id);
-        if(!data) return res.status(400).send("No Article match that ID");
+        if(!data) return res.status(400).send({
+            status:400,
+            msg:"No Article match that ID"});
         const articleOne=article.indexOf(crudUser.Article);
-        if(!article.splice(articleOne)) return res.send("Something went wrong");
-        res.status(200).json({
+        if(!article.splice(articleOne)) return res.status(400).send("Something went wrong");
+        return res.status(204).json({
             status:204,
             msg:"article deleted successfull"
         })

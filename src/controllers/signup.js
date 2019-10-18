@@ -14,14 +14,14 @@ const userActivityUp={
         
     const { error } = userValidation(req.body)     
     if(error){
-        res.status(400).send(error.details[0].message);
-        return
+        return res.status(400).send(error.details[0].message);
+        
     };
     
     const check=crudUser.findOne(req.body.email);
     if(check){
-    res.send('Email already taken');
-    return;
+        return res.status(400).send({msg:'Email already taken'});
+    
     }
     const inPassword=crudUser.hashPassword(req.body.password);
     const payload={email:req.body.email};
@@ -41,8 +41,7 @@ const userActivityUp={
     }
     
     if(crudUser.addUser(newUser)){
-        res.setHeader('Content-Type','application/json');
-        res.status(201).json({
+        return res.status(201).json({
         status:201,
         message:'user created successfull',
         data:{
@@ -54,7 +53,7 @@ const userActivityUp={
     
     }
     else{
-    res.json({
+    return res.status(400).json({
         status:400,
         message:'Failed to register user, please try again',
 

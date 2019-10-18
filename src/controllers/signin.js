@@ -7,7 +7,7 @@ const userActivityIn = {
     signin(req,res){
         const { error } = signinValidation(req.body);
         if(error){
-            return res.send({
+            return res.status(400).send({
                 msg:"Validation Error",
                 Error:error.details[0].message
             })
