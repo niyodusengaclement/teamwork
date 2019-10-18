@@ -4,7 +4,7 @@ const users=
     "firstname":"Mistico",
     "lastname":"Clement",
     "email":"clementmistico@gmail.com",
-    "password":"password123",
+    "password":"$2b$10$iqswk.ZdpCcc250YT9Fey.Yml4wKjhEAclygaN5N2597kp8RPUKJW",
     "gender":"Male",
     "jobRole":"Software developer",
     "departement":"backend"

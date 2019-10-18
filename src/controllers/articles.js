@@ -7,8 +7,7 @@ import article from "../assets/article"
 const articleActions = {
 
     create(req,res){
-        const token=req.headers.auth;
-        const options={expiresIn: '1d', issuer:'www.jwt.io'};
+
         const newArticle = {
             id:article.length+1,
             createdOn:moment.now(),
@@ -18,21 +17,15 @@ const articleActions = {
             comments:[]
 
         }
-        try{
-        crudUser.validateToken(token,options);
-        }
-        catch(err){
-            return res.send("Invalid or malformatted token provided").false
-        }
 
         const { error } = addArticleValidation(req.body);
         if(error){
-            return res.send(error.details[0].message);
+            return res.status(400).send(error.details[0].message);
         }
         if(!crudUser.addArticle(newArticle)){
-            return res.send("something went wrong");
+            return res.status(400).send("something went wrong");
         }
-        res.status(200).json({
+        return res.status(200).json({
             status:200,
             message:"Article added successfull",
             data:{
@@ -41,39 +34,27 @@ const articleActions = {
                 author:newArticle.authorId
             }
         })
-        
-        
-
-
     },
 
     getAll(req,res){
-    //     const check= crudUser.findAllArticles();
-    //     if(!check) return res.send('No Article found');
-    //    res.status(200).send(crudUser.Article);   
 
-       res.status(200).send(article);        
+        const output=article.sort().reverse();
+            
+       res.status(200).send(output);        
     },
     getOne(req,res){
         const id=parseInt(req.params.articleId);
         const data= crudUser.findOneArticle(id);
-        if(!data) return res.status(400).send("No Article match that ID");
+        if(!data) return res.status(400).send({
+            status:400,
+            message:"No Article match that ID"});
         const articleOne=crudUser.Article;
-        res.status(200).json({
+        return res.status(200).json({
             status:200,
             data:articleOne
         });
     },
     addComment(req,res){
-        const token=req.headers.auth;
-        const options={expiresIn: '1d', issuer:'www.jwt.io'};
-        try{
-            crudUser.validateToken(token,options);
-            }
-        catch(err){
-            return res.send("Invalid or malformatted token provided").false
-            }
-
         const comment=req.body.comment;
         const id=parseInt(req.params.articleId);
         const data= crudUser.findOneArticle(id);
@@ -95,6 +76,41 @@ const articleActions = {
 
 
 
+    },
+    editOne(req,res){
+        const title=req.body.title;
+        const article=req.body.article;
+        const id=parseInt(req.params.articleId);
+        const data= crudUser.findOneArticle(id);
+        if(!data) return res.status(400).send({
+            status:400,
+            message:"No Article match that ID"});
+        const articleOne=crudUser.Article;
+        articleOne.article=article;
+        articleOne.title=title;
+        return res.status(200).json({
+            status:200,
+            msg:"article edited successfull",
+            title:articleOne.title,
+            article:articleOne.article
+        })
+
+        
+    },
+    deleteOne(req,res){
+        const id=parseInt(req.params.articleId);
+        const data= crudUser.findOneArticle(id);
+        if(!data) return res.status(400).send({
+            status:400,
+            msg:"No Article match that ID"});
+        const articleOne=article.indexOf(crudUser.Article);
+        if(!article.splice(articleOne)) return res.status(400).send("Something went wrong");
+        return res.status(204).json({
+            status:204,
+            msg:"article deleted successfull"
+        })
+
+        
     }
 
 }
