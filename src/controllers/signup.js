@@ -41,6 +41,7 @@ const userActivityUp={
     }
     
     if(crudUser.addUser(newUser)){
+        res.setHeader("x-auth",token)
         return res.status(201).json({
         status:201,
         message:'user created successfull',

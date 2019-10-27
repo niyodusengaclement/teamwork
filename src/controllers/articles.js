@@ -90,7 +90,7 @@ const articleActions = {
         articleOne.title=title;
         return res.status(200).json({
             status:200,
-            msg:"article edited successfull",
+            msg:`article edited successful, edited by ${req.decoded.email}`,
             title:articleOne.title,
             article:articleOne.article
         })

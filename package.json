@@ -4,9 +4,9 @@
   "description": "Teamwork built by using ES6 # Requirements to run * Node.js # Steps to perform in terminal : 1. cd in the project dir and run npm install 2. npm run build 3. npm start 4. open the browser and type localhost:5000 and type endpoint as configured",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require babel-core/register --require babel-polyfill --exit ./Test/index.js",
+    "test": "nyc mocha --require babel-core/register --require babel-polyfill --exit ./Test/index.js",
     "build": "babel index.js  --out-dir build/ --ignore ./node_modules",
-    "start": "node --require babel-core/register --require babel-polyfill ./index.js"
+    "start": "nodemon --require babel-core/register --require babel-polyfill ./index.js"
   },
   "keywords": [],
   "author": "Mistico Clement",
@@ -20,7 +20,8 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "mocha": "^6.2.1",
-    "mocha-lcov-reporter": "^1.3.0"
+    "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^14.1.1"
   },
   "dependencies": {
     "babel-core": "^6.26.3",
@@ -34,6 +35,7 @@
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
+    "swagger-ui-express": "^4.1.2",
     "uuid": "^3.3.3"
   },
   "repository": {
