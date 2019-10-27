@@ -3,10 +3,11 @@ import userActivityUp from '../controllers/signup';
 import userActivityIn from '../controllers/signin';
 import articleActions from "../controllers/articles";
 import validateToken from '../auth/auth';
+import signout from '../controllers/signout';
 
 const router = express.Router();
 
-
+router.get("/auth/signout", signout);
 router.post('/auth/signup', userActivityUp.signup);
 router.post('/auth/signin', userActivityIn.signin);
 
