@@ -6,6 +6,7 @@
   "scripts": {
     "test": "nyc mocha --require babel-core/register --require babel-polyfill --exit ./Test/index.js",
     "build": "babel index.js  --out-dir build/ --ignore ./node_modules",
+    "lint": "eslint js",
     "start": "nodemon --require babel-core/register --require babel-polyfill ./index.js"
   },
   "keywords": [],
@@ -29,6 +30,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
     "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
     "core-util-is": "^1.0.2",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",

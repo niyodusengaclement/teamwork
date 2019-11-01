@@ -1,15 +1,16 @@
 import express from 'express';
-import { serve,setup } from 'swagger-ui-express';
+import { serve, setup } from 'swagger-ui-express';
 import body from 'body-parser';
-import router from './src/routes';
 import env from 'dotenv';
-import swaggerDoc from "./swagger.json";
+import router from './src/routes';
+import swaggerDoc from './swagger.json';
+
 env.config();
 
 const app = express();
-app.use('/api-docs',serve,setup(swaggerDoc));
+app.use('/api-docs', serve, setup(swaggerDoc));
 
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(body.json());
 app.use(express.json());
 

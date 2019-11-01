@@ -13,7 +13,7 @@ export default function signin () {
         request(app)
         .post("/api/v1/auth/signin")
         .send(user.invalidEmail)
-        .end((err,res) => {
+      .end((err,res) => {
             assert.equal(400,res.status);
             expect(res.body).to.have.property("msg","Validation Error")
             done();

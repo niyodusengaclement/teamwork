@@ -1,6 +1,7 @@
-import users from "../assets/users";
+import bcrypt from 'bcrypt';
+import users from '../assets/users';
 import article from "../assets/article";
-import bcrypt from "bcrypt";
+
 
 class CrudUser {
     constructor() {
@@ -17,7 +18,8 @@ class CrudUser {
     addUser(inputData) {
         return users.push(inputData);
     }
-    addArticle(newArticle) {
+
+    addArticle ( newArticle ) {
         return article.push(newArticle);
     }
     findOneArticle(id) {
